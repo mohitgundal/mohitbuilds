@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f4f5f7;
+  --card: #fff;
+  --border: #dfe1e6;
+  --title: #172b4d;
+  --task: #253858;
+  --accent: #0052cc;
+  --gray: #6b778c;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(#ff6a00, #ee0979);
+  background: linear-gradient(#f70279, #f8b586);
+
+  color: var(--title);
+  height: 100vh;
+  padding-bottom: 2rem;
+}
+
+.container {
+  text-align: center;
+  width: 90%;
+  max-width: 1300px;
+  margin: auto;
+}
+
+.container h1 {
+  color: white;
+  font-weight: bold;
+  padding: 30px 0;
+}
+
+.header {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: var(--accent);
+}
+
+.subtitle {
+  color: var(--gray);
+  margin-top: 0.5rem;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.column {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.column:hover {
+  transform: scale(1.01);
+}
+
+.column-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.column-title h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.column-title h3::after {
+  content: " (" attr(data-tasks) ")";
+  font-weight: normal;
+  color: var(--gray);
+}
+
+.column-title button {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.tasks {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.task {
+  background: var(--bg);
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+  cursor: grab;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.task.dragging {
+  opacity: 0.5;
+  background: #dce3ff;
+}
+
+.task > div {
+  flex: 1;
+  color: var(--task);
+  white-space: pre-wrap;
+}
+
+.task menu {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.task menu button {
+  background: none;
+  border: none;
+  color: var(--gray);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.task menu button:hover {
+  color: var(--accent);
+}
+
+.task-input {
+  border: 1px dashed var(--gray);
+  border-radius: 8px;
+  padding: 0.75rem;
+  background: #fafbfc;
+  color: var(--task);
+  min-height: 40px;
+  outline: none;
+}
+
+.task-input:empty:before {
+  content: attr(data-placeholder);
+  color: #c1c7d0;
+  pointer-events: none;
+}
+
+.confirm-modal {
+  padding: 1.5rem;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background: var(--card);
+}
+
+.confirm-modal::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.confirm-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.confirm-modal .preview {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+.confirm-modal menu {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.confirm-modal button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.confirm-modal #cancel {
+  background: #f4f5f7;
+  color: var(--gray);
+}
+
+.confirm-modal #confirm {
+  background: var(--accent);
+  color: white;
+}
