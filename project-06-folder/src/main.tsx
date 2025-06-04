@@ -6,7 +6,7 @@ import "./Theme.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/Note-Taking-App">
       <App />
     </BrowserRouter>
   </React.StrictMode>
